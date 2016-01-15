@@ -1,0 +1,4 @@
+---
+#File : site.yml
+ - include: qaserv.yml
+ - include: jenkinsserv.yml

@@ -1,0 +1,12 @@
+---
+# file: jenkinsserv.yml
+
+ - hosts: jenkinserver
+   remote_user: kiran
+   become: yes
+   become_method: sudo
+   vars:
+    - JEN_JOB: /var/lib/jenkins/jobs/
+    - USER_WWW: /home/{{user}}/jobs
+   roles:
+     - jenkins

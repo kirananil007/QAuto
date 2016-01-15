@@ -1,0 +1,7 @@
+---
+
+- name: reload jenkins
+  command: /usr/bin/java -jar /var/lib/jenkins/jenkins-cli.jar -s http://localhost:8080  -i  /var/lib/jenkins/.ssh/id_rsa reload-configuration
+  become: yes
+  become_user: jenkins
+  become_method: sudo

@@ -1,0 +1,11 @@
+---
+
+- name: Ensure the jobdir is created.
+  file: path={{ JEN_JOB }}{{sub_domain}} owner=jenkins group=jenkins state=directory mode=0755
+
+- name: Ensure the Job conf file is copied.
+  template: src=config.xml dest={{ JEN_JOB }}{{ sub_domain }}/config.xml owner=jenkins group=jenkins mode=0644  
+  notify: reload jenkins
+
+- name: Ensure Jenkins is started and enabled.
+  service: name=jenkins state=started enabled=yes

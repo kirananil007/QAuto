@@ -1,0 +1,12 @@
+---
+
+- name: Ensure the webserver configuration files are copied.
+  template: src=temp_vhost.conf dest=/etc/nginx/sites-available/{{sub_domain}}--deploy.conf owner=root group=root mode=0644
+  notify: restart nginx
+
+- name: Ensure the webserver conf is enabled.
+  file: src=/etc/nginx/sites-available/{{sub_domain}}-deploy.conf dest=/etc/nginx/sites-enabled/{{sub_domain}}.conf owner=root group=root state=link
+  notify: restart nginx
+
+- name: Ensure Nginx is started and enabled.
+  service: name=nginx state=started enabled=yes

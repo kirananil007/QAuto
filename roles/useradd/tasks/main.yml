@@ -1,0 +1,11 @@
+---
+
+- name: Ensure Deployment user is added
+  user: name={{user}} comment="{{user}} deploy" shell=/bin/bash
+ 
+- name: Ensure public key is copied to the server
+  authorized_key: user={{user}} key="{{ lookup('file', '../files/jenkins_key.pub') }}"
+
+- name: Ensure the docroot is created.
+  file: path={{USER_WWW}} owner={{user}} group={{user}} state=directory mode=0755
+

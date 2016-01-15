@@ -1,0 +1,12 @@
+---
+# file: qaserv.yml
+
+ - hosts: ansible
+   remote_user: kiran
+   become: yes
+   become_method: sudo
+   vars:
+    - USER_WWW: /home/{{user}}/public_html
+   roles:
+     - useradd
+     - apache
